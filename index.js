@@ -1,11 +1,15 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var cors = require('cors');
+
 var dataRouter = require('./routes/data.route');
 
 
 var app = express();
+
 app.use(bodyParser.json());
+app.use(cors());
 
 var uri = 'mongodb+srv://Saikrishnamohan:AHG1N6eRjUcj3TDe@cluster0.eggzxuh.mongodb.net/?retryWrites=true&w=majority';
 
