@@ -13,13 +13,17 @@ class dataController {
                 res.send({status: 'email already exsists'});
             }else{
                 const pass = req.body.password;
-                bcryptJs.hash(pass, 10, (err, hashedpassword) => {
-                    if(err){
-                        res.send({status: 'failed', message:err.message});
-                    }else{
-                        hashedpassword;
-                    }
+                
+                const hashedpassword = await new Promise((resolve, reject) => {
+                    bcryptJs.hash(pass, 10, (err, hashed) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(hashed);
+                        }
+                    });
                 })
+                
                 await dataService.create({username: req.body.username, password: hashedpassword, email: req.body.email});
                 res.send({status: 'User registered successfully'});
             }
