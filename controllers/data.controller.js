@@ -18,9 +18,9 @@ class dataController {
                         res.send({status: 'failed', message:err.message});
                     }else{
                         hashedpassword;
-                        dataService.create({username: req.body.username, password: hashedpassword, email: req.body.email});
                     }
                 })
+                await dataService.create({username: req.body.username, password: hashedpassword, email: req.body.email});
                 res.send({status: 'User registered successfully'});
             }
         }catch(err) {
