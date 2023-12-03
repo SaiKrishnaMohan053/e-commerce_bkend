@@ -35,10 +35,6 @@ class dataController {
     async login(req, res){
         const eMail = await dataService.getByEmail(req.body.email);
 
-        if(eMail == null){
-            res.send({message: 'signup'});
-        }
-
         if(eMail){
             const pass = req.body.password;
             const passMatch = await bcryptJs.compare(pass, eMail.password);
