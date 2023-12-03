@@ -33,8 +33,9 @@ class dataController {
     }
 
     async login(req, res){
-        const eMail = await dataService.getByEmail(req.body.email);
-
+        const em = req.body.email;
+        const eMail = await dataService.getByEmail(em);
+        console.log(eMail);
         if(eMail){
             const pass = req.body.password;
             const passMatch = await bcryptJs.compare(pass, eMail.password);
@@ -44,6 +45,8 @@ class dataController {
                 const token = jwt.sign({email: eMail.email}, secretKey);
                 res.send({token: token, message: 'login successfully'});
             }
+        }else{
+            res.send({message: "user need to signup"});
         }
     }
 }
