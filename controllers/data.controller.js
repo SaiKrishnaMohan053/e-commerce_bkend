@@ -45,7 +45,7 @@ class dataController {
                 const token = jwt.sign({email: eMail.email}, secretKey);
                 res.send({token: token, message: 'login successfully'});
             }
-        }else{
+        }else if(eMail == null){
             res.send({message: "user need to signup"});
         }
     }
