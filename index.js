@@ -7,14 +7,11 @@ var app = express();
 
 const allowedOrigins = ['http://localhost:3000', 'https://talented-jumpsuit-bee.cyclic.app/'];
 app.use(cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-}));
+    origin: 'http://localhost:3000',
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Your-Custom-Header'],
+  }));
+  
 
 var dataRouter = require('./routes/data.route');
 
