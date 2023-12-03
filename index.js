@@ -3,13 +3,22 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
-var dataRouter = require('./routes/data.route');
-
-
 var app = express();
 
+const allowedOrigins = ['http://localhost:3000', 'https://talented-jumpsuit-bee.cyclic.app/'];
+app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+}));
+
+var dataRouter = require('./routes/data.route');
+
 app.use(bodyParser.json());
-app.use(cors());
 
 var uri = 'mongodb+srv://Saikrishnamohan:AHG1N6eRjUcj3TDe@cluster0.eggzxuh.mongodb.net/?retryWrites=true&w=majority';
 
