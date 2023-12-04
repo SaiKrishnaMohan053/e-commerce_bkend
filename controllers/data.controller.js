@@ -47,7 +47,7 @@ class dataController {
             if(!passMatch){
                 return res.send({status: 'failed', message: 'Incorrect password'});
             }else{
-                const token = jwt.sign({email: eMail.email}, secretKey);
+                const token = jwt.sign({email: eMail.email, name: eMail.username}, secretKey);
                 res.send({token: token, message: 'login successfully'});
             }
         }
