@@ -36,17 +36,20 @@ class dataController {
         const em = req.body.email;
         const eMail = await dataService.getByEmail(em);
         console.log(eMail);
+
+        if(!eMail){
+            return res.send({message: 'user need to signup'})
+        }
+
         if(eMail){
             const pass = req.body.password;
             const passMatch = await bcryptJs.compare(pass, eMail.password);
             if(!passMatch){
-                res.send({status: 'failed', message: 'Incorrect password'});
+                return res.send({status: 'failed', message: 'Incorrect password'});
             }else{
                 const token = jwt.sign({email: eMail.email}, secretKey);
                 res.send({token: token, message: 'login successfully'});
             }
-        }else if(eMail == null){
-            res.send({message: "user need to signup"});
         }
     }
 }
