@@ -29,9 +29,11 @@ class dataController {
             return res.send({message: 'email already exsists'});
         }
 
-        const files = req.files.map(file => ({
-            data: file.buffer,
-            contentType: file.mimetype
+        const files = file.map(file => ({
+            name: file.originalname,
+            type: file.mimetype,
+            size: file.size,
+            data: file.buffer.toString('base64'),
         }));
 
         await dataService.addReqDetails({company_name: company_name, email: email, phone_number: phone_number, address: address, file: files});

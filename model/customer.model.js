@@ -14,8 +14,10 @@ customerRequestDetails = mongoose.model("customer_requests", {
         type: String
     },
     file: {
-        data: Buffer,
-        contentType: String,
+        name: String,
+        type: String,
+        size: String,
+        data: String
     }
 
 })
