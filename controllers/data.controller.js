@@ -29,7 +29,12 @@ class dataController {
             return res.send({message: 'email already exsists'});
         }
 
-        await dataService.addReqDetails({company_name: company_name, email: email, phone_number: phone_number, address: address, file: file});
+        const files = req.files.map(file => ({
+            data: file.buffer,
+            contentType: file.mimetype
+        }));
+
+        await dataService.addReqDetails({company_name: company_name, email: email, phone_number: phone_number, address: address, file: files});
         res.send({status: 'successfull', message: 'request sent successfully'});
     }
 

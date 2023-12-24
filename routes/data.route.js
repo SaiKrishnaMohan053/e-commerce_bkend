@@ -1,8 +1,12 @@
-var express = require('express');
-var router = express.Router();
-var dataCntrl = require('../controllers/data.controller');
+const express = require('express');
+const router = express.Router();
+const multer = require('multer');
+const dataCntrl = require('../controllers/data.controller');
 
-router.post('/sendRequest', dataCntrl.newCustomerRequest);
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+router.post('/sendRequest', upload.array('files'), dataCntrl.newCustomerRequest);
 router.post('/login', dataCntrl.login);
 router.get('/welcomePage', (req, res)=>{
     res.send({message: 'intial page'});
