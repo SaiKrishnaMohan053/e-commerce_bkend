@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const dataCntrl = require('../controllers/data.controller');
 
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: '../uploads/' });
 
 router.post('/sendRequest', upload.array('files', 5), dataCntrl.newCustomerRequest);
 router.post('/login', dataCntrl.login);
