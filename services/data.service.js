@@ -22,7 +22,7 @@ class dataService {
     }
 
     getByEmail(email) {
-        return dataModel.findOne({email});
+        return customerDetails.findOne({email});
     }
 }
 

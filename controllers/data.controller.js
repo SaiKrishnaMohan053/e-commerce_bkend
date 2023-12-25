@@ -29,12 +29,14 @@ class dataController {
             return res.send({message: 'email already exsists'});
         }
 
-        const files = file.map(file => ({
-            name: file.originalname,
-            type: file.mimetype,
-            size: file.size,
-            data: file.buffer.toString('base64'),
-        }));
+        if(file){
+            var files = file.map(fil => ({
+                name: fil.originalname,
+                type: fil.mimetype,
+                size: fil.size,
+                data: fil.buffer.toString('base64'),
+            }))
+        }
 
         await dataService.addReqDetails({company_name: company_name, email: email, phone_number: phone_number, address: address, file: files});
         res.send({status: 'successfull', message: 'request sent successfully'});
