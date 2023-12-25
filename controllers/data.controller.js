@@ -34,8 +34,8 @@ class dataController {
             email: email, 
             phone_number: phone_number, 
             address: address, 
-            abc_lic_photo: req.files['abc_lic_photo'][0] && req.files['abc_lic_photo'][0].buffer, 
-            sales_tax_photo: req.files['sales_tax_photo'][0] && req.files['sales_tax_photo'][0].buffer,
+            abc_lic_photo: req.files && req.files['abc_lic_photo'] && req.files['abc_lic_photo'][0] && req.files['abc_lic_photo'][0].buffer, 
+            sales_tax_photo: req.files && req.files['sales_tax_photo'] && req.files['sales_tax_photo'][0] && req.files['sales_tax_photo'][0].buffer,
             federal_id: federal_id
         });
         
