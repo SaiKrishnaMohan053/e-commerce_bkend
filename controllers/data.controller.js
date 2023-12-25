@@ -22,14 +22,23 @@ const otpMap = new Map();
 
 class dataController {
     async newCustomerRequest(req,res) {
-        const companyData = req.body;
+        const {company_name, email, phone_number, address, federal_id} = req.body;
 
-        const chkMail = await dataService.getByEmail(companyData.email);
+        const chkMail = await dataService.getByEmail(email);
         if(chkMail) {
             return res.send({message: 'email already exsists'});
         }
 
-        await dataService.addReqDetails(companyData);
+        await dataService.addReqDetails({
+            company_name: company_name, 
+            email: email, 
+            phone_number: phone_number, 
+            address: address, 
+            abc_lic_photo: req.files['abc_lic_photo'][0].buffer, 
+            sales_tax_photo: req.files['sales_tax_photo'][0].buffer,
+            federal_id: federal_id
+        });
+        
         res.send({status: 'successfull', message: 'request sent successfully'});
     }
 

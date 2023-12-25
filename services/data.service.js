@@ -2,16 +2,8 @@ const fs = require('fs');
 const {customerRequestDetails, customerDetails} = require('../model/customer.model');
 
 class dataService {
-    addReqDetails({}) {
+    addReqDetails(data) {
         const chkData = new customerRequestDetails(data);
-
-        if(data.files){
-            chkData.photos = data.files.map(file => ({
-                data: fs.readFileSync(file.path),
-                contentType: file.mimetype
-            }))
-        }
-
         return chkData.save();
     }
 
