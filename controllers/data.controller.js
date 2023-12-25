@@ -29,13 +29,17 @@ class dataController {
             return res.send({message: 'email already exsists'});
         }
 
+        const abcLicPhoto = { data: req.files['abc_lic_photo'][0].buffer, contentType: req.files['abc_lic_photo'][0].mimetype }
+        const salesTaxPhoto = { data: req.files['sales_tax_photo'][0].buffer, contentType: req.files['sales_tax_photo'][0].mimetype }
+      
+
         await dataService.addReqDetails({
             company_name: company_name, 
             email: email, 
             phone_number: phone_number, 
             address: address, 
-            abc_lic_photo: req.files && req.files['abc_lic_photo'] && req.files['abc_lic_photo'][0] && req.files['abc_lic_photo'][0].buffer, 
-            sales_tax_photo: req.files && req.files['sales_tax_photo'] && req.files['sales_tax_photo'][0] && req.files['sales_tax_photo'][0].buffer,
+            abc_lic_photo: abcLicPhoto, 
+            sales_tax_photo: salesTaxPhoto,
             federal_id: federal_id
         });
         

@@ -14,10 +14,12 @@ customerRequestDetails = mongoose.model("customer_requests", {
         type: String
     },
     abc_lic_photo: {
-        type: Buffer
+        data: Buffer,
+        contentType: String
     },
     sales_tax_photo: {
-        type: Buffer
+        data: Buffer,
+        contentType: String
     },
     federal_id: {
         type: String
