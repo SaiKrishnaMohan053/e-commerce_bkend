@@ -5,7 +5,6 @@ var cors = require('cors');
 
 var app = express();
 
-const allowedOrigins = ['http://localhost:3000', 'https://talented-jumpsuit-bee.cyclic.app/'];
 app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true,
@@ -18,6 +17,8 @@ var dataRouter = require('./routes/data.route');
 app.use(bodyParser.json());
 
 var uri = 'mongodb+srv://Saikrishnamohan:AHG1N6eRjUcj3TDe@cluster0.eggzxuh.mongodb.net/?retryWrites=true&w=majority';
+
+app.use('/uploads', express.static('uploads'));
 
 app.use('/data', dataRouter);
 

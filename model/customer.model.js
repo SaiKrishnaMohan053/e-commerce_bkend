@@ -1,34 +1,17 @@
 const mongoose = require('mongoose');
 
 customerRequestDetails = mongoose.model("customer_requests", {
-    company_name: {
-        type: String
-    },
-    email: {
-        type: String
-    },
-    phone_number: {
-        type: Number
-    },
-    address: {
-        type: String
-    },
-    file: {
-        name: String,
-        type: String,
-        size: String,
-        data: String
-    }
+    company_name: String,
+    email: String,
+    phone_number: Number,
+    address: String,
+    photos: [{ data: Buffer, contentType: String }]
 
 })
 
 customerDetails = mongoose.model("User_details", {
-    company_name: {
-        type: String,
-    },
-    name: {
-        type: String
-    },
+    company_name: String,
+    name: String,
     email: {
         type: String,
         validate: {
@@ -40,9 +23,7 @@ customerDetails = mongoose.model("User_details", {
             }
         } 
     },
-    password: {
-        type: String
-    },
+    password: String,
     role: {
         type: String,
         default: 'customer'
