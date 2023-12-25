@@ -6,10 +6,10 @@ var cors = require('cors');
 var app = express();
 
 app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true,
-    allowedHeaders: ['Content-Type', 'Your-Custom-Header'],
-  }));
+  origin: 'http://localhost:3000',
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Your-Custom-Header'],
+}));
   
 
 var dataRouter = require('./routes/data.route');
