@@ -29,7 +29,7 @@ class dataController {
             return res.send({message: 'email already exsists'});
         }
 
-        if(file){
+        if(file && Array.isArray(file)){
             var files = file.map(fil => ({
                 name: fil.originalname,
                 type: fil.mimetype,
